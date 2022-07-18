@@ -9,7 +9,7 @@ module.exports = {
       colors: {
         lightmodetext: "hsl(200,15%,8%)",
         lightmodeinput: "hsl(0,0%,52%)",
-        lightmodebackground: "hsl(0,0%,98%)",
+        lightmodebackground: "#f8f8f8",
         darkmodeelements: "hsl(209,23%,22%)",
         darkmodebackground: "hsl(207,26%,17%)",
       },
