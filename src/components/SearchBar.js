@@ -12,7 +12,7 @@ function SearchBar() {
       "flex  flex-row justify-center w-80 px-5 py-3  bg-white rounded-sm  shadow-md text-lightmodeinput text-sm outline-none sm:w-96 xl:w-[26rem]",
     input: "flex-1  focus:outline-none pl-4 text-sm font-light",
     dropdownContainer:
-      "w-48 py-4 px-6 bg-white self-start rounded-md  shadow-md flex flex-row justify-between items-center relative cursor-pointer",
+      "w-48 py-4 px-6 bg-white  rounded-md  shadow-md flex flex-row justify-between items-center relative cursor-pointer",
     dropdown: "text-[0.86rem] w-fit text-lightmodetext px-6 cursor-pointer",
     dropdownEle: " text-lightmodetext text-sm font-light",
     arrowIcon: "!text-xs rotate-90 !text-lightmodetext",
@@ -26,7 +26,7 @@ function SearchBar() {
         <SearchIcon />
         <input className={style.input} placeholder="Search for Country..." />
       </div>
-      <div className="relative">
+      <div className="relative self-start">
         <div
           className={style.dropdownContainer}
           onClick={() => setDropdownOpen(!dropdownOpen)}

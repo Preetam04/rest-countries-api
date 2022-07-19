@@ -1,8 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
-
+import { configureStore } from "@reduxjs/toolkit";
+import countriesReducer from "./countrySlice";
+import { getDefaultMiddleware } from "@reduxjs/toolkit";
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
+    country: countriesReducer,
   },
+  middleware: getDefaultMiddleware({
+    serializableCheck: false,
+  }),
 });
