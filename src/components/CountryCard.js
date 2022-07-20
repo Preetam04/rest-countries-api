@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 import countryApi from "../countryApi";
 
-function CountryCard({ data }) {
+function CountryCard({ data, opacity }) {
   const style = {
     cardContainer:
-      "w-[20rem] h-[25.75rem] bg-white shadow rounded-md overflow-hidden cursor-pointer sm:w-[22rem]",
-    flag: "w-[22rem] h-[13rem]",
+      "w-[20rem] h-[25.75rem] bg-white shadow rounded-md overflow-hidden cursor-pointer sm:w-[22rem] duration-200 ",
+    cardContainer2:
+      "w-[20rem] h-[25.75rem] bg-white shadow rounded-md overflow-hidden cursor-pointer sm:w-[22rem] duration-200 opacity-0",
+    flag: "w-[22rem] h-[13rem] ",
     countryname: "ml-10 mt-7 mb-2.5 text-[1.75rem] font-semibold duration-300 ",
     infoPara: "font-normal ml-10 text-base",
     infoSpan: "font-light text-lg",

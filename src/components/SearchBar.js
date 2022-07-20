@@ -1,9 +1,38 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getCountries,
+  getCountriesByName,
+  getCountriesByRegion,
+} from "../app/countrySlice";
 
 function SearchBar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [region, setRegion] = useState("");
+  const [name, setName] = useState("");
+
+  const dispatch = useDispatch();
+
+  const countries = useSelector(getCountries);
+  // const country = countries.data.map((ele) => ele.name.common);
+  console.log(countries);
+
+  useEffect(() => {
+    if (region) {
+      dispatch(getCountriesByRegion(region));
+    }
+    if (name) {
+      dispatch(getCountriesByName(name));
+    }
+
+    // country.forEach((ele) => {
+    //
+    // });
+  }, [dispatch, region, name]);
+
+  const regions = ["Africa", "America", "Asia", "Europe", "Oceania"];
 
   const style = {
     container:
@@ -17,35 +46,50 @@ function SearchBar() {
     dropdownEle: " text-lightmodetext text-sm font-light",
     arrowIcon: "!text-xs rotate-90 !text-lightmodetext",
     dropdownContainer2:
-      "absolute w-48 h-36 py-3 top-16 left-0  rounded bg-white shadow-md flex flex-col justify-around items-start  duration-300 opacity-0",
+      "absolute w-48 h-36 py-3 left-0  rounded bg-white shadow-md flex flex-col justify-around items-start  duration-300 opacity-0 top-16",
   };
 
   return (
     <div className={style.container}>
       <div className={style.inputbar}>
         <SearchIcon />
-        <input className={style.input} placeholder="Search for Country..." />
+        <input
+          className={style.input}
+          placeholder="Search for Country..."
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </div>
       <div className="relative self-start">
         <div
           className={style.dropdownContainer}
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
-          <p className={style.dropdownEle}>Filter by Region</p>
+          <p className={style.dropdownEle}>
+            {!region ? "Filter by Region" : region}
+          </p>
           <ArrowForwardIosIcon className={style.arrowIcon} />
         </div>
         <div
           className={
             dropdownOpen
-              ? `${style.dropdownContainer2} opacity-100`
+              ? `${style.dropdownContainer2} opacity-100 `
               : style.dropdownContainer2
           }
         >
-          <p className={style.dropdown}>Africa</p>
-          <p className={style.dropdown}>America</p>
-          <p className={style.dropdown}>Asia</p>
-          <p className={style.dropdown}>Europe</p>
-          <p className={style.dropdown}>Oceania</p>
+          {regions.map((ele) => (
+            <p
+              key={ele}
+              onClick={() => {
+                setDropdownOpen(false);
+                setRegion(ele);
+                return;
+              }}
+              className={style.dropdown}
+            >
+              {ele}
+            </p>
+          ))}
         </div>
       </div>
     </div>
