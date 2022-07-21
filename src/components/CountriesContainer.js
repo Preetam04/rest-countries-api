@@ -21,6 +21,8 @@ function CountriesContainer() {
           className="opacity-100"
         />
       ))
+    ) : countries.status === null ? (
+      <p className="text-xl text-lightmodeinput">Couldn't Load the Country</p>
     ) : (
       <p className="text-xl text-lightmodeinput">Loading...</p>
     );
