@@ -12,7 +12,7 @@ function Home() {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col h-screen fixed overflow-auto mb-20 items-center duration-300 bg-gray-300 dark:bg-darkmodebackground">
+    <div className="flex flex-col w-screen h-screen fixed overflow-auto mb-20 items-center duration-300 bg-gray-300 dark:bg-darkmodebackground">
       <SearchBar />
       <CountriesContainer />
     </div>
