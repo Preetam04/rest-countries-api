@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function CountryCard({ data, opacity }) {
   const style = {
@@ -14,21 +15,31 @@ function CountryCard({ data, opacity }) {
   };
 
   return (
-    <div className={style.cardContainer}>
-      <img src={data.flags.png} alt="flag-img" className={style.flag} />
-      <h2 className={`${style.countryname} leading-8`}>{data.name.common}</h2>
-      <p className={style.infoPara}>
-        Population:{" "}
-        <span className={style.infoSpan}>
-          {data.population.toLocaleString("en-US")}
-        </span>
-      </p>
-      <p className={style.infoPara}>
-        Region: <span className={style.infoSpan}>{data.region}</span>
-      </p>
-      <p className={style.infoPara}>
-        Capital: <span className={style.infoSpan}>{data.capital}</span>
-      </p>
+    <div className={`${style.cardContainer} dark:bg-darkmodeelements`}>
+      <Link to={`/countrydetail/${data.name.common}`}>
+        <img src={data.flags.png} alt="flag-img" className={style.flag} />
+        <h2 className={`${style.countryname} leading-8 dark:text-white`}>
+          {data.name.common}
+        </h2>
+        <p className={`${style.infoPara} dark:text-white`}>
+          Population:{" "}
+          <span className={`${style.infoSpan} dark:text-white`}>
+            {data.population.toLocaleString("en-US")}
+          </span>
+        </p>
+        <p className={`${style.infoPara} dark:text-white`}>
+          Region:{" "}
+          <span className={`${style.infoSpan} dark:text-white`}>
+            {data.region}
+          </span>
+        </p>
+        <p className={`${style.infoPara} dark:text-white`}>
+          Capital:{" "}
+          <span className={`${style.infoSpan} dark:text-white`}>
+            {data.capital}
+          </span>
+        </p>
+      </Link>
     </div>
   );
 }

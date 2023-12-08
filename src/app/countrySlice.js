@@ -3,7 +3,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import countryApi from "../countryApi";
 
 const initialState = {
-  countries: [],
+  countries: {},
+  countriesForBorder: {},
 };
 
 export const getAllCountries = createAsyncThunk(
@@ -37,12 +38,27 @@ export const getCountriesByName = createAsyncThunk(
   }
 );
 
+export const getCountriesForBorder = createAsyncThunk(
+  "countries/CountriesForBorder",
+  async (elee) => {
+    const data = elee.forEach(async (ele) => {
+      const response = await countryApi
+        .get(`/alpha/${ele}`)
+        .catch((err) => console.log(err));
+      // console.log(response);
+      // return response;
+    });
+    console.log(data);
+    return data;
+  }
+);
+
 const countrySlice = createSlice({
   name: "countries",
   initialState,
   reducers: {
-    addCountries: (state, { payload }) => {
-      state.countries = payload;
+    removeCountries: (state) => {
+      state.country.countries = {};
     },
   },
   extraReducers: {
@@ -55,9 +71,13 @@ const countrySlice = createSlice({
     [getCountriesByName.fulfilled]: (state, { payload }) => {
       return { ...state, countries: payload };
     },
+    [getCountriesForBorder.fulfilled]: (state, { payload }) => {
+      return { ...state, countriesForBorder: payload };
+    },
   },
 });
 
 export const getCountries = (state) => state.country.countries;
-
+export const getBorderCountries = (state) => state.country.countriesForBorder;
+export const removeCountries = countrySlice.actions;
 export default countrySlice.reducer;

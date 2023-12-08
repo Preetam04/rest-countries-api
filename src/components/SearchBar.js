@@ -6,6 +6,7 @@ import {
   getCountries,
   getCountriesByName,
   getCountriesByRegion,
+  removeCountries,
 } from "../app/countrySlice";
 
 function SearchBar() {
@@ -46,29 +47,29 @@ function SearchBar() {
 
   const style = {
     container:
-      "flex mt-10 flex-col items-center w-80 justify-between h-[8.3rem] sm:flex-row sm:w-full  sm:px-10 lg:px-14 xl:px-20 sm:items-start sm:h-24",
+      "flex mt-10 flex-col items-center w-80 justify-between h-[8.3rem] sm:flex-row sm:w-full  sm:px-10 lg:px-14 xl:px-20 sm:items-start sm:h-24 bg-transparent",
     inputbar:
-      "flex  flex-row justify-center w-80 px-5 py-3  bg-white rounded-sm  shadow-md text-lightmodeinput text-sm outline-none sm:w-96 xl:w-[26rem]",
+      "flex  flex-row justify-center w-80 px-5 py-3  bg-white rounded-sm  shadow-md text-lightmodeinput text-sm outline-none sm:w-96 xl:w-[26rem] duration-300",
     input: "flex-1  focus:outline-none pl-4 text-sm font-light",
     dropdownContainer:
       "w-48 py-4 px-6 bg-white  rounded-md  shadow-md flex flex-row justify-between items-center relative cursor-pointer",
     dropdown: "text-[0.86rem] w-fit text-lightmodetext px-6 cursor-pointer",
     dropdownEle: " text-lightmodetext text-sm font-light",
-    arrowIcon: "!text-xs rotate-90 !text-lightmodetext",
+    arrowIcon: "!text-xs rotate-90 !text-lightmodetext ",
     dropdownContainer2:
       "absolute w-48 h-36 py-3 left-0  rounded bg-white shadow-md flex flex-col justify-around items-start  duration-300 opacity-0 top-16 z-10",
   };
 
   return (
-    <div className={style.container}>
-      <div className={style.inputbar}>
+    <div className={`${style.container} `}>
+      <div className={`${style.inputbar} dark:bg-darkmodeelements`}>
         <form onSubmit={(e) => submitHandler(e)} className="w-full">
           <SearchIcon
             onClick={(e) => submitHandler(e)}
-            className="cursor-pointer"
+            className="cursor-pointer dark:!text-white"
           />
           <input
-            className={style.input}
+            className={`${style.input} dark:bg-darkmodeelements dark:text-white dark:placeholder:text-white`}
             placeholder="Search for Country..."
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -77,19 +78,21 @@ function SearchBar() {
       </div>
       <div className="relative self-start">
         <div
-          className={style.dropdownContainer}
+          className={`${style.dropdownContainer} dark:bg-darkmodeelements`}
           onClick={() => setDropdownOpen(!dropdownOpen)}
         >
-          <p className={style.dropdownEle}>
+          <p className={`${style.dropdownEle} dark:text-white`}>
             {!region ? "Filter by Region" : region}
           </p>
-          <ArrowForwardIosIcon className={style.arrowIcon} />
+          <ArrowForwardIosIcon
+            className={`${style.arrowIcon}  dark:!text-white `}
+          />
         </div>
         <div
           className={
             dropdownOpen
-              ? `${style.dropdownContainer2} !opacity-100 `
-              : style.dropdownContainer2
+              ? `${style.dropdownContainer2} !opacity-100 dark:bg-darkmodeelements `
+              : `${style.dropdownContainer2} dark:bg-darkmodeelements  hidden h-0 p-0`
           }
         >
           {regions.map((ele) => (
@@ -100,7 +103,7 @@ function SearchBar() {
                 setRegion(ele);
                 return;
               }}
-              className={style.dropdown}
+              className={`${style.dropdown} dark:text-white`}
             >
               {ele}
             </p>

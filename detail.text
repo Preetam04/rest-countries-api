@@ -1,0 +1,66 @@
+<div className={`${style.container}`}>
+        
+        <div
+          className={`${style.detailContainer}  sm:flex-row sm:items-start sm:justify-around`}
+        >
+          <img src={info.flags.png} alt="flag" className="w-80" />
+          <div className="self-start mt-28 sm:mt-0 ">
+            <h2 className={`${style.name} sm:text-3xl`}>{info.name.common}</h2>
+            <div>
+              <div>
+                <p className={`${style.detailPara} !mt-7`}>
+                  Native Name:{" "}
+                  <span className={style.detailSpan}>
+                    {
+                      info.name.nativeName[Object.keys(info.languages)[0]]
+                        .common
+                    }
+                  </span>
+                </p>
+                <p className={style.detailPara}>
+                  Population:{" "}
+                  <span className={style.detailSpan}>
+                    {info.population.toLocaleString("en-US")}
+                  </span>
+                </p>
+                <p className={style.detailPara}>
+                  Region:{" "}
+                  <span className={style.detailSpan}>{info.region}</span>
+                </p>
+                <p className={style.detailPara}>
+                  Sub Region:{" "}
+                  <span className={style.detailSpan}>{info.subregion}</span>
+                </p>
+                <p className={style.detailPara}>
+                  Capital:{" "}
+                  <span className={style.detailSpan}>{info.capital[0]}</span>
+                </p>
+              </div>
+              <div className="mt-10">
+                <p className={`${style.detailPara} `}>
+                  Top Level Domain:{" "}
+                  <span className={style.detailSpan}>{info.tld[0]}</span>
+                </p>
+                <p className={`${style.detailPara} `}>
+                  Currencies:{" "}
+                  <span className={style.detailSpan}>
+                    {info.currencies[Object.keys(info.currencies)[0]].name}
+                  </span>
+                </p>
+                <p className={`${style.detailPara} `}>
+                  Languages:{" "}
+                  <span className={style.detailSpan}>
+                    {Object.values(info.languages).join(", ")}
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div className="mt-7">
+              <h3 className="text-lightmodetext text-xl font-semibold">
+                Border Countries
+              </h3>
+              <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
